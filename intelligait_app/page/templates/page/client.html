@@ -51,6 +51,38 @@
                 <button type="button" class="btn btn_custom_blue mr-2 mb-1">Upload Video</button>
             </a>
         </nav>
+<<<<<<< HEAD
+=======
+        
+        <!-- Tab Content-->
+        <div class="tab-content custom-background p-3" id="nav-tabClient" style="border:none;">
+            
+            <!-- Login. -->
+            <div class="tab-pane show active" id="analyses" role="tabpanel" aria-labelledby="nav-analyses-tab">
+                <!-- Table -->
+                <table id="dtBasicExample" class="table table-hover table-light" cellspacing="0" width="100%">
+                    
+                    <!-- Navigation Bar -->
+                    <nav class="custom-navigation-bar navbar navbar-inverse p-0">
+                        <div class="container p-0" style="flex-wrap: nowrap;">
+                            
+                            <!-- Search Bar -->
+                            <form class="navbar-form navbar-left p-0 m-0" action="">
+                                {% comment %}
+                                <div class="input-group flex-shrink-1">
+                                    <!-- Search Input-->
+                                    <input type="search" class="custom-input-input" placeholder="Search" name="search"> 
+                                    <!-- Search Button -->
+                                    <button type="submit" class="btn custom-input-btn"><img src="/media/images/search_icon.svg"></button>
+                                </div>
+                                {% endcomment %}
+                            </form>
+                            
+                            <!-- Upload Video Button -->
+                            <a class="float-right" href="{% url 'upload-video' object.id %}">
+                                <button type="button" class="btn btn_custom_blue mr-2 mb-1">Upload Video</button>
+                            </a>
+>>>>>>> db256f5397c279dbd88f4cf11e8ab9a7bd0e1afd
 
       <div class="d-flex d-md-none align-items-center css_header_bar m-0 p-2">
           <a class="btn btn_back p-0 m-0" href="{% url 'client' client.id %}">
@@ -62,6 +94,7 @@
           </a>
       </div>
 
+<<<<<<< HEAD
       <div class="list-group list-group-flush  scrollarea">
         <div class="table-responsive mw-100 m-3">
             <table id="dtBasicExample" class="table table-light align-middle" cellspacing="0" width="100%">
@@ -76,6 +109,75 @@
                         </tr>
                     </thead>
                     <tbody class="css_table_body">
+=======
+                    <div>
+                        <thead>
+                            <tr>
+                                <th scope="col">Original Video</th>
+                                <th scope="col">Pose Estimation Video</th>
+                                <th scope="col">Analysis (PDF)</th>
+                                <th scope="col">Date</th>
+
+                            </tr>
+                        </thead>
+                        {% if videos|length == 0 %}
+                            <tr>
+                                <td colspan="4" class="text-center">No analyses to display. Click the 'Analyse Video' button above to upload and analyse a video.</td>
+                            </tr>
+                        {% else %}
+                            {% for video in videos %}
+                                <tr class="listed-client-style">
+                                    <!-- Original Video -->
+                                    <th data-href="{% url 'video-modal' client.id video.id %}"><small>{{ video.title }}</small></th>
+                                    <!-- Skeleton Video -->
+                                    <th data-href="{% url 'pose-video-modal' client.id video.id %}"><small>{{ video.title }} Pose Estimation</small></th>
+                                    <!-- Analysis -->
+                                    <th data-href="{% url 'pdf-view' client.id video.analysis_title %}"><small>{{ video.analysis_title }}</small></th>
+                                    <!-- Date -->
+                                    <th><small>{{ video.date_uploaded }}</small></th>
+
+                                    <!-- Edit Button -->
+                                    {% comment %} <td><a class="btn btn-light btn-sm" href="{% url 'delete-video' client.id video.id %}"><i class="bi bi-pencil-square"></i></a></td> {% endcomment %}
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </table>
+            </div>
+            
+            {% comment %} <!-- Signup. -->
+            <div class="tab-pane" id="videos" role="tabpanel" aria-labelledby="nav-videos-tab">
+                <table id="dtBasicExample" class="table table-hover table-light" cellspacing="0" width="100%">
+                    <!-- Table Navigation Bar -->
+                    <nav class="custom-navigation-bar navbar navbar-inverse p-0">
+                        <div class="container p-0" style="flex-wrap: nowrap;">
+                            
+                            <!-- Search Bar -->
+                            <form class="navbar-form navbar-left p-0 m-0" action="">
+                                <div class="input-group flex-shrink-1">
+                                    <!-- Search Input-->
+                                    <input type="search" class="custom-input-input" placeholder="Search" name="search"> 
+                                    <!-- Search Button -->
+                                    <button type="submit" class="btn custom-input-btn"><img src="/media/images/search_icon.svg"></button>
+                                </div>
+                            </form>
+    
+                            <!-- Upload Video Button -->
+                            <a class="float-right" href="{% url 'upload-video' client.id %}">
+                                <button type="button" class="btn btn_custom_blue mr-2 mb-1">Analyse Video</button>
+                            </a>
+                        </div>
+                    </nav>
+                    <div>
+                    
+                        <thead>
+                            <tr>
+                                <th class="col-sm-4">Name</th>
+                                <th class="col-sm-4">Analysis</th>
+                                <th class="col-sm-4">Date Uploaded</th>
+                            </tr>
+                        </thead>
+>>>>>>> db256f5397c279dbd88f4cf11e8ab9a7bd0e1afd
                         {% if videos|length == 0 %}
                         <tr>
                             <td colspan="5" class="text-center">No analyses to display. Click the 'Analyse Video' button above to upload and analyse a video.</td>

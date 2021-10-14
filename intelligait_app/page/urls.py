@@ -3,7 +3,11 @@ from django.conf.urls import url
 from .views import (
     ClientListView, ClientDetailView, ClientCreateView, 
     ClientUpdateView, ClientDeleteView, ClientUploadView, 
+<<<<<<< HEAD
     ClientVideoView, ClientPoseVideoView
+=======
+    ClientVideoView, ClientPoseVideoView, VideoDeleteView
+>>>>>>> db256f5397c279dbd88f4cf11e8ab9a7bd0e1afd
 )
 from . import views
 

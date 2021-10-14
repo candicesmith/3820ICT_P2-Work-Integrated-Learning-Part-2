@@ -106,8 +106,25 @@ class ClientPoseVideoView(LoginRequiredMixin, DetailView):
         return context
 
 
+<<<<<<< HEAD
 
 # Sends all videos of that client to the video list view
+=======
+class ClientPoseVideoView(LoginRequiredMixin, DetailView):
+    model = Client
+    template_name = 'page/pose_video_modal.html'
+    def get_context_data(self, *args, **kwargs):
+
+        video_pk = self.kwargs.get('video_pk', None)
+
+        context = super().get_context_data(*args, **kwargs)
+
+        client = self.get_object()
+        context['video'] = Video.objects.get(client_id=client, id=video_pk)
+        return context
+
+
+>>>>>>> db256f5397c279dbd88f4cf11e8ab9a7bd0e1afd
 class VideoListView(LoginRequiredMixin, ListView):
 
     # Add in a QuerySet of the video filtered by client_id and video pk
@@ -204,7 +221,10 @@ class ClientUploadView(LoginRequiredMixin, DetailView):
             title = request.POST.get('title')
             video = request.FILES.get('video')
             
+<<<<<<< HEAD
             # Update client information
+=======
+>>>>>>> db256f5397c279dbd88f4cf11e8ab9a7bd0e1afd
             client.num_analyses += 1
             client.num_videos += 1
             client.save()
@@ -229,8 +249,11 @@ class ClientUploadView(LoginRequiredMixin, DetailView):
             skeleton_video_path = str(skeleton_video_path[0]).split('\\')
             skeleton_video_path1 = "videos/" + skeleton_video_path[-1] 
             video.skeleton_video = skeleton_video_path1 + "_pose_estimation.mp4"
+<<<<<<< HEAD
 
             # Save video
+=======
+>>>>>>> db256f5397c279dbd88f4cf11e8ab9a7bd0e1afd
             video.save(force_update=True)
 
             # Return client and videos objects to client view
